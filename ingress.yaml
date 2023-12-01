@@ -15,7 +15,7 @@ spec:
     - host: host.simpleg.eu
       http:
         paths:
-          - path: /cp-config/
+          - path: /cp-config
             pathType: Prefix
             backend:
               service:
