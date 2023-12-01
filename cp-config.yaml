@@ -27,6 +27,11 @@ spec:
               value: "Production"
             - name: ASPNETCORE_URLS
               value: "http://*:80"
+            - name: SECRETS_MANAGER_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-manager-access-token
+                  key: secrets-manager-access-token
       restartPolicy: Always
 ---
 apiVersion: v1
