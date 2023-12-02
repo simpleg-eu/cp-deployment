@@ -6,6 +6,11 @@ metadata:
     cert-manager.io/issuer: "letsencrypt-staging"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       rewrite /cp-config/(.*) /$1 break;
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location ~* /cp-config/healthz(/|$) {
+        deny all;
+        return 403;
+      }
 spec:
   ingressClassName: nginx
   tls:

@@ -22,6 +22,15 @@ spec:
         - name: cp-config
           image: baguette6/cp-config:latest
           imagePullPolicy: Always
+          readinessProbe:
+            periodSeconds: 60
+            httpGet:
+              path: /healthz/ready
+              port: 80
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
