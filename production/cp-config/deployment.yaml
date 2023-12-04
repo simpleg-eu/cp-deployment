@@ -15,7 +15,7 @@ spec:
     metadata:
       name: cp-config-production
       labels:
-        app: cp-config
+        app: cp-config-production
         env: production
     spec:
       containers:
