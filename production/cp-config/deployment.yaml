@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cp-config
+  name: cp-config-production
   labels:
-    app: cp-config
+    app: cp-config-production
     env: production
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: cp-config
+      app: cp-config-production
       env: production
   template:
     metadata:
-      name: cp-config
+      name: cp-config-production
       labels:
         app: cp-config
         env: production
     spec:
       containers:
-        - name: cp-config
+        - name: cp-config-production
           image: baguette6/cp-config:latest
           imagePullPolicy: Always
           readinessProbe:
