@@ -5,7 +5,8 @@ metadata:
   annotations:
     cert-manager.io/issuer: "letsencrypt-staging"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      rewrite /cp-config/(.*) /$1 break;
+      rewrite /cp-config/production/(.*) /$1 break;
+      rewrite /cp-config/staging/(.*) /$1 break;
     nginx.ingress.kubernetes.io/server-snippet: |
       location ~* /cp-config/healthz(/|$) {
         deny all;
@@ -21,10 +22,18 @@ spec:
     - host: host.simpleg.eu
       http:
         paths:
-          - path: /cp-config
+          - path: /cp-config/production
             pathType: Prefix
             backend:
               service:
-                name: cp-config-service
+                name: cp-config-production-service
                 port:
                   number: 1080
+          - path: /cp-config/staging
+            pathType: Prefix
+            backend:
+              service:
+                name: cp-config-staging-service
+                port:
+                  number: 2080
+                
