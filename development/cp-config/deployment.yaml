@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cp-config-production
+  name: cp-config-development
   labels:
-    app: cp-config-production
-    env: production
+    app: cp-config-development
+    env: development
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: cp-config-production
-      env: production
+      app: cp-config-development
+      env: development
   template:
     metadata:
-      name: cp-config-production
+      name: cp-config-development
       labels:
-        app: cp-config-production
-        env: production
+        app: cp-config-development
+        env: development
     spec:
       containers:
-        - name: cp-config-production
+        - name: cp-config-development
           image: gabriel0simpleg/cp-config:latest
           imagePullPolicy: Always
           readinessProbe:

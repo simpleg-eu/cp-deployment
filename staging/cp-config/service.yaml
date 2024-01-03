@@ -4,10 +4,10 @@ metadata:
   name: cp-config-staging-service
 spec:
   selector:
-    app: cp-config
+    app: cp-config-staging
     env: staging
   ports:
     - protocol: TCP
-      port: 2080
-      targetPort: 80
+      port: 3001
+      targetPort: 3000
   type: LoadBalancer

@@ -7,8 +7,9 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       rewrite /cp-config/production/(.*) /$1 break;
       rewrite /cp-config/staging/(.*) /$1 break;
+      rewrite /cp-config/development/(.*) /$1 break;
     nginx.ingress.kubernetes.io/server-snippet: |
-      location ~* /cp-config/healthz(/|$) {
+      location ~* /healthz(/|$) {
         deny all;
         return 403;
       }
@@ -16,10 +17,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - host.simpleg.eu
-      secretName: host-simpleg-tls
+        - s1.simpleg.eu
+      secretName: s1-simpleg-tls
   rules:
-    - host: host.simpleg.eu
+    - host: s1.simpleg.eu
       http:
         paths:
           - path: /cp-config/production
@@ -28,12 +29,18 @@ spec:
               service:
                 name: cp-config-production-service
                 port:
-                  number: 1080
+                  number: 3000
           - path: /cp-config/staging
             pathType: Prefix
             backend:
               service:
                 name: cp-config-staging-service
                 port:
-                  number: 2080
-                
+                  number: 3001
+          - path: /cp-config/development
+            pathType: Prefix
+            backend:
+              service:
+                name: cp-config-development-service
+                port:
+                  number: 3002

@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: cp-config-staging
-          image: baguette6/cp-config:latest
+          image: gabriel0simpleg/cp-config:latest
           imagePullPolicy: Always
           readinessProbe:
             periodSeconds: 60
@@ -32,10 +32,6 @@ spec:
               path: /healthz/live
               port: 80
           env:
-            - name: ASPNETCORE_ENVIRONMENT
-              value: "Staging"
-            - name: ASPNETCORE_URLS
-              value: "http://*:80"
             - name: SECRETS_MANAGER_ACCESS_TOKEN
               valueFrom:
                 secretKeyRef:
