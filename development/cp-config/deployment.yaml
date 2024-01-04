@@ -37,4 +37,11 @@ spec:
                 secretKeyRef:
                   name: secrets-manager-access-token
                   key: secrets-manager-access-token
+          volumeMounts:
+            - name: cp-config-development-configuration
+              mountPath: /cp-config/config
       restartPolicy: Always
+      volumes:
+        - name: cp-config-development-configuration
+          hostPath:
+            path: "$CP_CONFIG_CONFIG_PATH"
