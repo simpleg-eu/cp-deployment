@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cp-config-development
+  name: cp-config
   labels:
-    app: cp-config-development
-    env: development
+    app: cp-config
+    env: production
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: cp-config-development
-      env: development
+      app: cp-config
+      env: production
   template:
     metadata:
-      name: cp-config-development
+      name: cp-config
       labels:
-        app: cp-config-development
-        env: development
+        app: cp-config
+        env: production
     spec:
       containers:
-        - name: cp-config-development
+        - name: cp-config
           image: gabriel0simpleg/cp-config:latest
           imagePullPolicy: Always
           readinessProbe:
@@ -42,6 +42,6 @@ spec:
               mountPath: /cp-config/config
       restartPolicy: Always
       volumes:
-        - name: cp-config-development-configuration
+        - name: cp-config-configuration
           hostPath:
-            path: $(CP_CONFIG_CONFIG_PATH)
+            path: {PATH} # custom path to the config directory 
