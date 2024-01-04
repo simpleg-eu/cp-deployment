@@ -38,10 +38,10 @@ spec:
                   name: secrets-manager-access-token
                   key: secrets-manager-access-token
           volumeMounts:
-            - name: cp-config-development-configuration
+            - name: cp-config-configuration
               mountPath: /cp-config/config
       restartPolicy: Always
       volumes:
         - name: cp-config-configuration
           hostPath:
-            path: {PATH} # custom path to the config directory 
+            path: /home/gabriel/cuplan/cp-deployment/cp-config/config # custom path to the config directory 
