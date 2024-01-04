@@ -44,4 +44,4 @@ spec:
       volumes:
         - name: cp-config-development-configuration
           hostPath:
-            path: "$CP_CONFIG_CONFIG_PATH"
+            path: $(CP_CONFIG_CONFIG_PATH)
